@@ -52,6 +52,8 @@ export default class MemoryView extends Component {
       .done();
   }
 
+  
+
   renderMemory(memor) {
     return (
       <View style={styles.container}>
@@ -95,6 +97,7 @@ export default class MemoryView extends Component {
             renderRow={this.renderMemory}
             style={{flex: 1, backgroundColor: 'pink'}}
           />
+          
       </View>
     );
   }

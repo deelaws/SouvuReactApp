@@ -19,8 +19,8 @@ import Blink from './memory/blink';
 import MemoryView from './memory/memory';
 
 export default class MainView extends Component {
+
   render() {
-    debugger;
     return (
         <View style={styles.container}>
           <View style={{flex: .8, backgroundColor: 'powderblue'}}> 
@@ -28,7 +28,6 @@ export default class MainView extends Component {
               Memory App!
             </Text>
           </View>
-
           <Button
             onPress={Actions.add_memory}
             title="Add Memories"
