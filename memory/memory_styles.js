@@ -18,18 +18,19 @@ export default styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    backgroundColor: 'yellow',
 
   },
   rightContainer: {
     flex: 2,
-    backgroundColor: 'grey',
+    backgroundColor: '#f4f4ef',
     borderStyle: 'dotted',
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 2,
     marginBottom: 2,
   },
-  year: {
+  info: {
     textAlign: 'right',
   },
   title: {
@@ -42,5 +43,11 @@ export default styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
     
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#F6F6F6',
   },
 });

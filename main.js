@@ -7,7 +7,8 @@ import {
   View,
   Image,
   ListView,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 import {
@@ -20,24 +21,20 @@ import MemoryView from './memory/memory';
 
 export default class MainView extends Component {
 
+  _onMemoryPress() {
+    // 
+    Alert.alert("I clicked a view!");
+  }
+
   render() {
     return (
         <View style={styles.container}>
-          <View style={{flex: .8, backgroundColor: 'powderblue'}}> 
-            <Text style={styles.welcome}>
-              Memory App!
-            </Text>
-          </View>
-          <Button
-            onPress={Actions.add_memory}
-            title="Add Memories"
-            color="#841584"
-            accessibilityLabel="Click here to add Memories"
-          />
-
-          <View style={{flex: .5, backgroundColor: 'skyblue'}}> 
+          {/* <TouchableHighlight activeOpacity={80} underlayColor = {'red'} onPress={this._onMemoryPress}>
+            <Text style={styles.info}>"hello world"</Text>
+          </TouchableHighlight> */}
+          {/* <View style={{flex: .5, backgroundColor: 'skyblue'}}> 
             <Blink text='Niyomi!' />
-          </View >
+          </View > */}
           
           <MemoryView />
           
@@ -49,7 +46,6 @@ export default class MainView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 40,

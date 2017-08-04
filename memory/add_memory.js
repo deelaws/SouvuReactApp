@@ -18,67 +18,16 @@ import {
 
 import styles from './memory_styles';
 
+var default_mem_type = 'vocabulary';
 
-/*
-
-body: JSON.stringify({
-                mem_name: this.state.mem_name,
-                mem_info: this.state.mem_info,
-                mem_type: this.state.mem_type,
-            }*/
 export default class AddMemoryView extends Component {
 
     constructor(props) {
         super(props);
         this.state = { mem_name: 'Memory Name',
                        mem_info: 'Information',
-                       mem_type: 'Memory Type' };
+                       mem_type: default_mem_type };
     }
-
-    createBackEndMemory() {
-        debugger;
-
-        Alert.alert("booo yaaa");
-        // fetch('http://10.0.2.2:5000/memory/create', {
-        //     method: 'POST',
-        //     headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         firstName: 'Waleed',
-        //         lastName: 'Shahid',
-        //     })
-        // }).then((response) => response.json())
-        //   .then((responseJson) => {
-        //     this.setState({ mem_name: 'Memory Name',
-        //                mem_info: 'Information',
-        //                mem_type: 'Memory Type' });
-        // }).done();
-    }
-
-    getMemoriesFromSouvu() {
-        debugger;
-        Alert.alert("hello world");
-        //console.log("getMemoriesFromSouvuAsync");
-        /*fetch('http://10.0.2.2:5000/app/mems', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            firstName: 'Waleed',
-            lastName: 'Shahid',
-            })
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            Console.log("hello");
-            })
-        .done();*/
-    }
-
 
     add_memory () {
         // Perform verification
@@ -95,10 +44,9 @@ export default class AddMemoryView extends Component {
             })
         }).then((response) => response.json())
           .then((responseJson) => {
-            Alert.alert(responseJson.location);
             this.setState({ mem_name: 'Memory Name Added',
                        mem_info: 'Information will added',
-                       mem_type: 'Memory Type' });
+                       mem_type: 'vocabulary' });
         }).done();
     }
 
@@ -135,7 +83,7 @@ export default class AddMemoryView extends Component {
                     onValueChange={(lang) => this.setState({mem_type: lang})}>
                     <Picker.Item label="Vocubulary Word" value="vocabulary" />
                     <Picker.Item label="Book Note" value="book-note" />
-               </Picker>
+                </Picker>
 
                 <View style={{flex: 4, backgroundColor: 'pink'}}> 
 

@@ -7,13 +7,26 @@ import {
   Alert,
   View,
   StyleSheet,
-  ListView
+  ListView,
+  TouchableHighlight,
+  TouchableOpacity 
 } from 'react-native';
 
+import {
+  Actions,
+} from 'react-native-router-flux';
 
 import styles from './memory_styles';
 
-export default class MemoryView extends Component {
+export default class MemoryView extends React.Component {
+
+  memory_pressed(mname) {
+    
+    console.log("gaga");
+    Alert.alert("Deatiled memory view", mname);
+    {Actions.single_memory_view}
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +40,8 @@ export default class MemoryView extends Component {
     //setInterval(() => {
     //  this.setState({ showText: !this.state.showText });
     //}, 1000);
+
+    //this.memory_pressed = this.memory_pressed.bind(this);
   }
   
   getMemoriesFromSouvu() {
@@ -52,15 +67,25 @@ export default class MemoryView extends Component {
       .done();
   }
 
-  
+
+
+  clickMe() {
+    Alert.alert('Hi!');
+  }
 
   renderMemory(memor) {
-    return (
+    return (//Actions.edit_memory
       <View style={styles.container}>
-        <View style={styles.rightContainer}>
-          <Text style={styles.title}>{memor.mem_name}:{memor.info}</Text>
-          <Text style={styles.year}>{memor.mem_info}</Text>
-        </View>
+        <TouchableOpacity underlayColor={'#ff0000'} 
+                          //onPress={this.memory_pressed.bind(this, memor.mem_name)}
+                          onPress={() => Actions.single_memory_view({'mname': memor.mem_name,
+                                                                     'minfo': memor.mem_info})}
+                          >      
+          <View style={styles.rightContainer}>
+            <Text style={styles.title}>{memor.mem_name}:{memor.info}</Text>
+            <Text style={styles.info}>{memor.mem_info}</Text>
+          </View> 
+        </TouchableOpacity >
       </View>
     );
   }
@@ -86,18 +111,13 @@ export default class MemoryView extends Component {
     }
 
     return (
-      <View style={{flex: 3, backgroundColor: 'steelblue'}}> 
-          <View> 
-            <Text style={styles.welcomemem}>
-              Your Memories
-            </Text>
-          </View>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this.renderMemory}
-            style={{flex: 1, backgroundColor: 'pink'}}
-          />
-          
+      <View style={{flex: 3, marginBottom:50, marginTop:50}}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderMemory.bind(this)}
+          enableEmptySections={true}
+          keyboardShouldPersistTaps={'always'}
+        /> 
       </View>
     );
   }
