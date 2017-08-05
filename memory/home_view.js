@@ -14,18 +14,19 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
+import container_styles from '../styles/main_container_style';
+
 export default class HomeView extends Component {
 
     constructor(props) {
         super(props);
     }
 
-
     render() {
         return (
-            <View style={{flex: 1, marginBottom:50, marginTop:50}}>  
+            <View style={container_styles.container}>  
                 <View> 
-                    <Text style={styles.welcomemem}>
+                    <Text>
                         Your memory for today is
                     </Text>
                 </View>

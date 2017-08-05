@@ -16,7 +16,7 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
-import styles from './memory_styles';
+import container_styles from '../styles/main_container_style';
 
 var default_mem_type = 'vocabulary';
 
@@ -52,13 +52,7 @@ export default class AddMemoryView extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={{flex: .8, backgroundColor: 'powderblue'}}> 
-                    <Text style={styles.welcome}>
-                        Add Memory
-                    </Text>
-                </View>
-
+            <View style={container_styles.container}>
                 <Text>
                     Enter Memory Name here.
                 </Text>
@@ -67,7 +61,6 @@ export default class AddMemoryView extends Component {
                     onChangeText={(mname) => this.setState({mem_name: mname})}
                     value={this.state.mem_name}
                 />
-
                 <Text>
                     Enter Memory Info here.
                 </Text>
@@ -76,15 +69,12 @@ export default class AddMemoryView extends Component {
                     onChangeText={(minfo) => this.setState({mem_info: minfo})}
                     value={this.state.mem_info}
                 />
-
-
                 <Picker
                     selectedValue={this.state.mem_type}
                     onValueChange={(lang) => this.setState({mem_type: lang})}>
                     <Picker.Item label="Vocubulary Word" value="vocabulary" />
                     <Picker.Item label="Book Note" value="book-note" />
                 </Picker>
-
                 <View style={{flex: 4, backgroundColor: 'pink'}}> 
 
                     <Button

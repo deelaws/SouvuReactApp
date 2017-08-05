@@ -106,12 +106,7 @@ const scenes = Actions.create(
           <Scene key="tab4"  title="Your Memories"  icon={TabIcon}>
             <Scene key="main" 
               component={MainView} 
-              title="Memory App" 
-              //onRight={() => Actions.settings}//{} 
-              //rightTitle="Settings" 
-              // rightButtonIcon={"arrow-back"} 
-              //rightButtonIconSize={30} 
-              //rightTitle="hello"
+              title="Memory App"
               onEnter={()=>console.log('onEnter')}
               onExit={()=>console.log('onExit')}
               onRight={() => Actions.filter_view()}
@@ -121,12 +116,14 @@ const scenes = Actions.create(
               component={SingleMemoryView} 
               title="Edit Memory"
               hideTabBar={true}
+              direction="vertical"
               titleStyle={{color:'black'}}
             />
             <Scene key="filter_view" 
               component={FilterMemoryView} 
               title="Filter Memories"
               hideTabBar={true}
+              direction="fade"
               titleStyle={{color:'black'}}
             />
           </Scene>
@@ -148,25 +145,15 @@ export default class SouvuReactApp extends React.Component {
     alert('Hi!');
   }
 
-  get_toucable() {
-    return (<TouchableOpacity onPress={this.clickMe.bind(this)}>
-          <View style={styles.box}>
-            <Text>Hello {this.props.name}. Please click me.</Text>
-          </View>
-        </TouchableOpacity>);
-  }
-
-  render_d() {
-    return (
-      <View style={styles.container}>
-        {this.get_toucable()}
-      </View>
-    );
-  }
   render() {
     //debugger;
-    return <Router createReducer={reducerCreate}  getSceneStyle={getSceneStyle}  scenes={scenes} 
-      navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}
+    return <Router createReducer={reducerCreate}  
+      getSceneStyle={getSceneStyle}  
+      scenes={scenes} 
+      navigationBarStyle={styles.navBar} 
+      titleStyle={styles.navBarTitle} 
+      barButtonTextStyle={styles.barButtonTextStyle} 
+      barButtonIconStyle={styles.barButtonIconStyle}
     />;
     //return <Blink text='Niyomi!' />;
   }

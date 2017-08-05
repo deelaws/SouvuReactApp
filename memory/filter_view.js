@@ -14,6 +14,8 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
+import container_styles from '../styles/main_container_style';
+
 export default class FilterMemoryView extends Component {
 
     constructor(props) {
@@ -23,16 +25,16 @@ export default class FilterMemoryView extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>  
+            <View style={container_styles.container}>  
                 <View> 
-                    <Text style={styles.welcomemem}>
+                    <Text>
                         FilterMemoryView
                     </Text>
                 </View>
-                <Text style={styles.welcomemem}>
+                <Text>
                     FilterMemoryView
                 </Text>
-                <Text style={styles.welcomemem}>
+                <Text >
                     FilterMemoryView
                 </Text>
             </View>

@@ -10,7 +10,6 @@ import {
   StyleSheet
 } from 'react-native';
 
-import styles from './memory_styles.js';
 
 /*
  * Get's memories from the back-end.

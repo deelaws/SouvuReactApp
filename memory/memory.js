@@ -16,7 +16,8 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
-import styles from './memory_styles';
+import list_styles from '../styles/memory_list_style';
+import container_styles from '../styles/main_container_style';
 
 export default class MemoryView extends React.Component {
 
@@ -35,17 +36,11 @@ export default class MemoryView extends React.Component {
       }),
       loaded: false,
     };
-
-    // Toggle the state every second
-    //setInterval(() => {
-    //  this.setState({ showText: !this.state.showText });
-    //}, 1000);
-
     //this.memory_pressed = this.memory_pressed.bind(this);
   }
   
   getMemoriesFromSouvu() {
-    //console.log("getMemoriesFromSouvuAsync");
+    console.log("getMemoriesFromSouvuAsync");
     fetch('http://10.0.2.2:5000/app/mems', {
         method: 'POST',
         headers: {
@@ -67,23 +62,19 @@ export default class MemoryView extends React.Component {
       .done();
   }
 
-
-
-  clickMe() {
-    Alert.alert('Hi!');
-  }
-
   renderMemory(memor) {
     return (//Actions.edit_memory
-      <View style={styles.container}>
+      <View style={list_styles.container}>
         <TouchableOpacity underlayColor={'#ff0000'} 
                           //onPress={this.memory_pressed.bind(this, memor.mem_name)}
                           onPress={() => Actions.single_memory_view({'mname': memor.mem_name,
-                                                                     'minfo': memor.mem_info})}
-                          >      
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{memor.mem_name}:{memor.info}</Text>
-            <Text style={styles.info}>{memor.mem_info}</Text>
+                                                                     'minfo': memor.mem_info,
+                                                                     'mid': memor.mem_id,
+                                                                     'mtype': memor.mem_type,})}
+                          >
+          <View style={list_styles.rightContainer}>
+            <Text style={list_styles.title}>{memor.mem_name}:{memor.info}</Text>
+            <Text style={list_styles.info}>{memor.mem_info}</Text>
           </View> 
         </TouchableOpacity >
       </View>
@@ -92,7 +83,7 @@ export default class MemoryView extends React.Component {
 
   renderLoadingView() {
     return (
-      <View style={styles.container}>
+      <View style={container_styles.container}>
         <Text>
           Loading memories...
         </Text>
@@ -111,7 +102,7 @@ export default class MemoryView extends React.Component {
     }
 
     return (
-      <View style={{flex: 3, marginBottom:50, marginTop:50}}>
+      <View style={{flex: 3}}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderMemory.bind(this)}

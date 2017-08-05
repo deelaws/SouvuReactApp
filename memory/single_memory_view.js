@@ -16,23 +16,47 @@ import {
 } from 'react-native-router-flux';
 
 export default class SingleMemoryView extends Component {
-
     constructor(props) {
         super(props);
-        this.state = { mem_name: props.mname,
-                       mem_info: props.minfo};
+        this.state = {mem_name: props.mname,
+                      mem_info: props.minfo,
+                      mem_id: props.mid,
+                      mem_type: props.mtype,
+                      updated: false};
     }
 
     saveMemory() {
-        Alert.alert("Save needs to be implemented");
+        console.log("Saving edited Memory");
+        fetch('http://10.0.2.2:5000/mem/edit/' + this.state.mem_id, {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                mem_name: this.state.mem_name,
+                mem_info: this.state.mem_info,
+                mem_type: this.state.mem_type,
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
+                updated:true,});
+            })
+        .done(console.log("Memory saved successfuly"));
+
         {Actions.home}
     }
 
     render() {
         return (
             <View style={{flex: 1, marginBottom:50, marginTop:50}}>  
-                <View> 
-                    <Text style={styles.welcomemem}>
+                <View>
+                    <Text>
+                        Memory ID is {this.props.mid}
+                    </Text> 
+                    <Text>
                         Edit your memory Mr {this.props.mname}
                     </Text>
                     <Text>
