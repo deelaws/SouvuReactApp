@@ -22,7 +22,6 @@ export default class SettingsView extends Component {
         super(props);
     }
 
-
     render() {
         return (
             <View style={container_styles.container}>  
@@ -31,12 +30,6 @@ export default class SettingsView extends Component {
                         Settings page
                     </Text>
                 </View>
-                <Text >
-                    Settings page
-                </Text>
-                <Text>
-                    Settings page
-                </Text>
             </View>
         );
     }

@@ -39,6 +39,7 @@ import SettingsView from './settings/settings_view';
 import HomeView from './memory/home_view';
 import SingleMemoryView from './memory/single_memory_view';
 import FilterMemoryView from './memory/filter_view';
+import HomeNavBar from './navigation_bars/home_nav_bar'
 
 import nav_sytle from './styles/nav_bar_style';
 
@@ -70,18 +71,11 @@ const styles = StyleSheet.create({
   },
   tabBarStyle: {
     backgroundColor: '#659df7',
+    height:55,
   },
   tabBarSelectedItem: {
-    shadowColor: 'black',
+    shadowColor: 'green',
     opacity:30,
-    elevation:60,
-    // backgroundColor: 'grey',
-    //  borderStyle: "dotted",
-    //  borderRadius:50,
-    //  borderColor:"black",
-    //  shadowOffset: {width: 100, height:20},
-  shadowColor : "green",
-
   },
 });
 
@@ -95,14 +89,9 @@ class TabIcon extends Component {
       <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
         {/* <Icon style={{color: color}} name={this.props.iconName || "circle"} size={18}/> */}
          {this.props.selected ? 
-            (<Icon raised name={this.props.title} size={30}/>) :
-            <Icon  reverse name={this.props.title} size={30}/>
-         
-         
+            (<Icon raised name={this.props.title} size={30} />) :
+            <Icon  reverse name={this.props.title} size={30} />
          }
-{/* 
-        <Icon  name='home' size={30}/>
-        <Text style={{color: color, fontSize: 12}}>{this.props.title}</Text> */}
       </View>
     );
   }
@@ -120,10 +109,9 @@ const scenes = Actions.create(
             tabBarStyle={styles.tabBarStyle}
                 activeBackgroundColor='#659df7'>
         <Scene key="tab1"  
-               title="home" 
-               //icon={()=> <Icon  name='home' size={30}/>} 
+               title="home"
                icon={TabIcon}
-               navigationBarStyle={{backgroundColor:'#659df7'}} 
+               navBar={HomeNavBar}
                titleStyle={{color:'white'}}>
           <Scene key="home"
                 component={HomeView} 
@@ -140,9 +128,8 @@ const scenes = Actions.create(
               titleStyle={{color:'black'}}
             />
         </Scene>
-        <Scene key="tab4"  
+        <Scene key="memoryViewTab"  
            title="view-list"
-
            icon={TabIcon}>
           <Scene key="main" 
             component={MainView} 
@@ -167,7 +154,7 @@ const scenes = Actions.create(
             titleStyle={{color:'black'}}
           />
         </Scene>
-        <Scene key="tab5"  title="note-add" icon={TabIcon}>
+        <Scene key="memoryAddTab"  title="note-add" icon={TabIcon}>
           <Scene key="add_memory" 
               component={AddMemoryView} 
               title="Add a Memory"
@@ -194,7 +181,6 @@ export default class SouvuReactApp extends React.Component {
       barButtonTextStyle={nav_sytle.barButtonTextStyle} 
       barButtonIconStyle={nav_sytle.barButtonIconStyle}
     />;
-    //return <Blink text='Niyomi!' />;
   }
 }
 

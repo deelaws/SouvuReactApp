@@ -47,9 +47,9 @@ export default class AddMemoryView extends Component {
             this.setState({ mem_name: 'Memory Name Added',
                        mem_info: 'Information will added',
                        mem_type: 'vocabulary' });
+            Actions.memoryViewTab();
         }).done();
     }
-
     render() {
         return (
             <View style={container_styles.container}>
@@ -75,17 +75,11 @@ export default class AddMemoryView extends Component {
                     <Picker.Item label="Vocubulary Word" value="vocabulary" />
                     <Picker.Item label="Book Note" value="book-note" />
                 </Picker>
-                <View style={{flex: 4, backgroundColor: 'pink'}}> 
+                <View > 
 
                     <Button
                         onPress={() => this.add_memory()}
                         title="Add Memory Now!"
-                        color="#841584"
-                        accessibilityLabel="Back to main page"
-                    />
-                    <Button
-                        onPress={Actions.main}
-                        title="View Memories"
                         color="#841584"
                         accessibilityLabel="Back to main page"
                     />

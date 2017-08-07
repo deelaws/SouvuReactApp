@@ -22,13 +22,14 @@ export default class SingleMemoryView extends Component {
                       mem_info: props.minfo,
                       mem_id: props.mid,
                       mem_type: props.mtype,
-                      updated: false};
+                      updated: false,
+                      deleted: false};
     }
 
     saveMemory() {
         console.log("Saving edited Memory");
         fetch('http://10.0.2.2:5000/mem/edit/' + this.state.mem_id, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -43,6 +44,29 @@ export default class SingleMemoryView extends Component {
         .then((responseJson) => {
             this.setState({
                 updated:true,});
+            }
+        )
+        .done(console.log("Memory saved successfuly"));
+
+        {Actions.home}
+    }
+
+    deleteMemory() {
+        console.log("Deleting a memory");
+        fetch('http://10.0.2.2:5000/mem/delete/' + this.state.mem_id, {
+            method: 'DELETE',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
+                deleted:true,});
+            Actions.pop();
             })
         .done(console.log("Memory saved successfuly"));
 
@@ -80,7 +104,13 @@ export default class SingleMemoryView extends Component {
                     onPress={() => this.saveMemory()}
                     title="Save"
                     color="#841584"
-                    accessibilityLabel="Back to main page"
+                    accessibilityLabel="Save the edited memory"
+                />
+                <Button
+                    onPress={() => this.deleteMemory()}
+                    title="Delete"
+                    color="#841584"
+                    accessibilityLabel="Delete Memory"
                 />
             </View>
 

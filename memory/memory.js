@@ -16,6 +16,8 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
+import { Icon, } from 'react-native-elements';
+
 import list_styles from '../styles/memory_list_style';
 import container_styles from '../styles/main_container_style';
 
@@ -72,9 +74,19 @@ export default class MemoryView extends React.Component {
                                                                      'mid': memor.mem_id,
                                                                      'mtype': memor.mem_type,})}
                           >
-          <View style={list_styles.rightContainer}>
-            <Text style={list_styles.title}>{memor.mem_name}:{memor.info}</Text>
-            <Text style={list_styles.info}>{memor.mem_info}</Text>
+          <View style={list_styles.subcontainer}>
+            {memor.mem_type == "book-note" ? (
+              <View style={list_styles.rowview}>
+                <Icon  name='book' size={30} style={list_styles.iconstyle}/>
+                <Text style={list_styles.bookinfo}>{memor.mem_name}</Text>
+              </View>
+            ) : (
+              <View style={list_styles.rowview}>
+                <Icon  name='attachment' size={30} style={list_styles.iconstyle}/>
+                <Text style={list_styles.name}>{memor.mem_name}</Text> 
+              </View>
+            )}
+            {/* <Text style={list_styles.title}>{memor.mem_name}:{memor.info}</Text> */}
           </View> 
         </TouchableOpacity >
       </View>
@@ -108,6 +120,7 @@ export default class MemoryView extends React.Component {
           renderRow={this.renderMemory.bind(this)}
           enableEmptySections={true}
           keyboardShouldPersistTaps={'always'}
+          renderSeparator={(sectionId, rowId) => <View key={rowId} style={list_styles.separator} />}
         /> 
       </View>
     );
